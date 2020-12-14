@@ -1,0 +1,14 @@
+{
+  "name": "kyu_javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "5-kyu_directions-reduction.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bignumber.js": "^9.0.1"
+  }
+}
