@@ -1,22 +1,39 @@
 // Operations on sequences
+// NOT OPTIMIZED FOR BIG NUMBERS!!!!
 
 const BN = require('bignumber.js');
 
+
 function solve(arr) {
+    let num = 1
+    let sol = []
+    for (let i = 0; i < arr.length; i += 2) {
+        num *= (arr[0 + i]*arr[0 + i] + arr[1 + i]*arr[1 + i])
+    }
+    for (let i = 2; i < Math.ceil(Math.sqrt(num)); i++) {
+        if (Math.sqrt(num - i**2) % 1 === 0) {
+            sol.push([i, Math.sqrt(num - i**2)])
+        }
+    }
+    return sol[2]
+}
+
+/* function solve(arr) {
     let num = new BN(1)
     let sol = []
     for (let i = 0; i < arr.length; i += 2) {
         num = num.times(arr[0 + i]*arr[0 + i] + arr[1 + i]*arr[1 + i]) 
     }
-    for (let i = 2; i < Math.ceil(Math.sqrt(num)); i++) {
-        if (Math.sqrt(num - i**2) % 1 === 0) {
+    for (let i = (num.toNumber() > 10*5 ? num.dividedBy(100) : 2); i < Math.ceil(Math.sqrt(num)); i++) {
+        if ((num.minus(i**2)).squareRoot().modulo(1).eq(0)) {
             let r = new BN(i)
             sol = [ r.toNumber(), (num.minus(r.exponentiatedBy(2))).squareRoot().toNumber() ]
             break;
         }
     }
+    console.log(num.toNumber())
     return sol
-}
+} */
 
 console.log(solve([2, 1, 3, 4])) // [2, 11] , 125
 console.log(solve([1, 3, 1, 2, 1, 5, 1, 9])) // [250, 210] , 106600
@@ -25,11 +42,31 @@ console.log(solve([4, 3, 4, 2, 4, 5, 5, 9])) // [870, 1190] , 2173000
 console.log(solve([3, 2, 5, 5, 4, 2, 6, 6, 9, 3, 3, 2, 3, 7, 2, 3, 4, 9, 6, 7, 3, 8, 8, 7, 6, 3, 6, 6, 4, 4, 5, 3, 9, 8, 3, 9, 2, 2, 6, 6])) // [BN("20534466401280000"), BN("32656316659200000")]
 console.log(solve([8, 7,  8, 6, 5,  5,  7, 2, 2,  8, 5, 5,  8, 10, 9, 7, 10, 9, 6, 10])) // [1374771,7309774025] , 2173000
 
-
+// num < 10*5 ? num.dividedBy(100) : 2
 
 // 1.488099328131241e+33
 // 1.4880993281312406429302784e+33
 // 1.4880993281312406429302784e+33 sould!
+
+
+/*
+function solve(arr) {
+    let num = new BN(1)
+    let res = []
+    for (let i = 0; i < arr.length; i += 2) {
+        const sum = (arr[0 + i]*arr[0 + i] + arr[1 + i]*arr[1 + i]).toFixed()
+        num = num.times(sum)
+    }
+    for (let i = 2; i < Math.ceil(num.squareRoot()); i++) {
+        if ((num.minus(i**2)).squareRoot().modulo(1).eq(0)) {
+            res = [ r.toFixed(), (num.minus(BN(i).exponentiatedBy(2))).squareRoot().toFixed() ]
+            break;
+        }
+    }
+    console.log(num.toNumber())
+    return res
+}
+*/
 
 /* function solve(arr) {
     let num = 1
