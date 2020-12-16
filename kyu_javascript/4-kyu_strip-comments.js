@@ -15,10 +15,3 @@ const solution = (input, markers) => {
 
 console.log(solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])) // "apples, pears\ngrapes\nbananas"
 
-
-
-
-
-
-
-
