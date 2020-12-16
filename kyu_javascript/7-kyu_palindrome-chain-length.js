@@ -1,24 +1,30 @@
 // Palindrome chain length
 
-var palindromeChainLength = function(n) {
-    let num = n
-    let middle = Math.floor(parseInt(num.toString().split("").length) / 2)
-    let bottom = parseInt(num.toString().split("").slice(0, middle).join(""))
-    let top = parseInt(num.toString().split("").slice(middle).join(""))
-    let ctr = 0
-    for (let i = 0; i < n; i++) {
-        console.log("num", num,"middle", middle, "bottom", bottom,"top", top, "control", ctr)
-        if (bottom === parseInt(top.toString().split("").reverse().join("")) || n < 10) {
-            return ctr;
-        }
-        ctr++
-        num += parseInt(num.toString().split("").reverse().join(""))
-        middle = Math.floor(parseInt(num.toString().split("").length) / 2)
-        bottom = parseInt(num.toString().split("").slice(0, middle).join(""))
-        top = parseInt(num.toString().split("").slice(middle).join(""))
-    }
-};
+//Write a function which takes a positive integer and returns the number of special steps needed
+// to obtain a palindrome. The special step is: "reverse the digits, and add to the original number".
+// If the resulting number is not a palindrome, repeat the procedure with the sum until the resulting number is a palindrome.
 
+
+const palindromeChainLength = n => {
+    let isPalindrome = false
+    let ctr = 0
+    while (!isPalindrome) {
+        const middle = Math.floor(n.toString().length / 2)
+        const halfTop = n.toString().split("").splice(0, middle).join("")
+        const halfBottomEven = n.toString().split("").splice(middle).reverse().join("")
+        const halfBottomOdd = n.toString().split("").splice(middle + 1).reverse().join("")
+        if (n < 10 || ("" + n).split("").every((i, id, arr) => i == arr[0])) {
+            isPalindrome = true
+            break;
+        } else if (halfTop == halfBottomEven || halfTop == halfBottomOdd) {
+            isPalindrome = true
+            break;
+        }
+        n += parseInt(n.toString().split("").reverse().join(""))
+        ctr++
+    }
+    return ctr
+};
 
 
 console.log(palindromeChainLength(1)) //  0
@@ -27,3 +33,4 @@ console.log(palindromeChainLength(88)) // 0
 console.log(palindromeChainLength(87)) // 4
 console.log(palindromeChainLength(89)) // 24
 console.log(palindromeChainLength(10)) // 1
+console.log(palindromeChainLength(9001)) // 2
