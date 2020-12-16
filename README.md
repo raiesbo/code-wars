@@ -1,4 +1,4 @@
 # Code Wars
-Collection of solved Kattas. https://www.codewars.com/
+Code Wars archive of solved Kattas. (code in JavaScript and Python)
 
-[Personal badge](https://www.codewars.com/users/raiesbo/badges/micro)
+[![CodeWars](https://www.codewars.com/users/raiesbo/badges/large)](https://www.codewars.com/users/raiesbo "My Honor Badge")
