@@ -91,7 +91,7 @@ const decodeRailFenceCipher = (str, n) => {
         cache.push(null)
     }
 
-    for (let i = 0; i < strArr.length; i++){
+    for (let i = 0; i < strArr.length; i++) {
         cache[encodedIndex[i]] = strArr[i]
     }
 
