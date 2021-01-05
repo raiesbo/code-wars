@@ -23,7 +23,7 @@
 // const dblLinear = n => {
 //     const result = [1];
 
-//     for (let i = 0; i < 2 * n / 3; i++) {
+//     for (let i = 0; i < n + 1; i++) {
 //         let x = result[i]
 //         let y = 2 * result[i] + 1
 //         let z = 3 * result[i] + 1
@@ -38,26 +38,64 @@
 //     return result[n]
 // }
 
+// const dblLinear = n => {
+//     const result = [1];
+//     let ctr = result.length - 1
+
+//     while (result.length <= n + n * 2 / 6 ) {
+//         result.sort((a, b) => a - b)
+
+//         let x = result[ctr]
+//         let y = 2 * result[ctr] + 1
+//         let z = 3 * result[ctr] + 1
+
+//         !result.includes(x) && result.push(x)
+//         !result.includes(y) && result.push(y)
+//         !result.includes(z) && result.push(z)
+
+//         ctr ++
+//     }
+
+//     console.log(result)
+//     return result[n]
+// }
+
+
+// const dblLinear = n => {
+//     let x = 1;
+//     let y = [];
+//     let z = [];
+//     for(let i = 0; i < n; i++) {
+//         y.push(x * 2 + 1);
+//         z.push(x * 3 + 1);
+
+//         let min = Math.min(y[0], z[0])
+//         min === y[0] ? x = y.shift() : null
+//         min === z[0] ? x = z.shift() : null
+//     }
+//     return x
+// }
+
 const dblLinear = n => {
-    const result = [1];
-    let ctr = result.length - 1
+    let x = 1;
+    let y = [];
+    let z = [];
+    for(let i = 0; i < n; i++) {
+        y.push(x * 2 + 1);
+        z.push(x * 3 + 1);
+        // if(Math.min(y[0], z[0]) === y[0]) {
+        //     x = y.shift()
+        // } else {
+        //     x = z.shift()
+        // }
 
-    while (result.length <= n + n * 2 / 6 ) {
-        result.sort((a, b) => a - b)
+        // Math.min(y[0], z[0]) === y[0] ? x = y.shift() : x = z.shift()
 
-        let x = result[ctr]
-        let y = 2 * result[ctr] + 1
-        let z = 3 * result[ctr] + 1
-
-        !result.includes(x) && result.push(x)
-        !result.includes(y) && result.push(y)
-        !result.includes(z) && result.push(z)
-
-        ctr ++
+        let min = Math.min(y[0], z[0])
+        min === y[0] ? x = y.shift() : null
+        min === z[0] ? x = z.shift() : null
     }
-
-    console.log(result)
-    return result[n]
+    return x
 }
 
 
@@ -65,7 +103,7 @@ const dblLinear = n => {
 // TESTS
 console.log(dblLinear(10)) // 22
 console.log(dblLinear(20)) // 57
-// console.log(dblLinear(30)) // 91
+console.log(dblLinear(30)) // 91
 // console.log(dblLinear(50)) // 175
 // console.log(dblLinear(100)) // 447
 // console.log(dblLinear(6000)) // 80914
