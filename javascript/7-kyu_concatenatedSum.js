@@ -27,9 +27,6 @@ const checkConcatenatedSum = (num, times) => {
         }
     }
 
-
-    console.log(multiplier, res, num)
-
     return res === num
 }
 
